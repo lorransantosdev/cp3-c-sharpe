@@ -12,7 +12,7 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace Funeraria.Infrastructure.Migrations
 {
     [DbContext(typeof(FunerariaDbContext))]
-    [Migration("20260521000000_InitialCreate")]
+    [Migration("20260522000000_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
