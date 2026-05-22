@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Funeraria.Domain</RootNamespace>
+    <AssemblyName>Funeraria.Domain</AssemblyName>
+  </PropertyGroup>
+</Project>

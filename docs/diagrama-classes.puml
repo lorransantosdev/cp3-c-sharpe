@@ -1,0 +1,99 @@
+@startuml diagrama-classes-funeraria
+skinparam classAttributeIconSize 0
+skinparam classFontStyle bold
+hide circle
+
+title Sistema Funerário — Diagrama de Classes
+
+' ============== CLIENTE ==============
+abstract class Cliente {
+  +Id : int
+  +Nome : string
+  +Email : string
+  +Telefone : string
+  +CriadoEm : DateTime
+  +FilialId : int
+  +TipoCliente : string {abstract}
+}
+
+class PessoaFisica {
+  +Cpf : string
+  +DataNascimento : DateTime
+  +RendaMensal : decimal
+}
+
+class PessoaJuridica {
+  +Cnpj : string
+  +RazaoSocial : string
+  +FaturamentoMensal : decimal
+}
+
+Cliente <|-- PessoaFisica
+Cliente <|-- PessoaJuridica
+
+' ============== FILIAL ==============
+class Filial {
+  +Id : int
+  +Numero : string
+  +Nome : string
+  +Endereco : string
+}
+
+Filial "1" -- "0..*" Cliente : possui
+
+' ============== SERVICO ==============
+abstract class Servico {
+  +Id : int
+  +Nome : string
+  +Descricao : string
+  +Ativo : bool
+  +TipoServico : string {abstract}
+}
+
+class ServicoAssistencial {
+  +TaxaPacoteBasico : decimal
+  +TaxaPacotePremium : decimal
+  +TaxaDeslocamento : decimal
+}
+
+class Jazigo {
+  +CnpjCemiterio : string
+  +ValorPerpetuidade : decimal
+}
+
+class PlanoFunerario {
+  +MensalidadeBase : decimal
+  +CarenciaMaximaMeses : int
+  +CoberturaMaxima : decimal
+}
+
+Servico <|-- ServicoAssistencial
+Servico <|-- Jazigo
+Servico <|-- PlanoFunerario
+
+' ============== CONTRATACAO ==============
+class Contratacao {
+  +Id : int
+  +ValorSolicitado : decimal
+  +PrazoMeses : int?
+  +Status : StatusContratacao
+  +Mensagem : string?
+  +ScoreCalculado : int?
+  +TaxaAplicada : decimal?
+  +SolicitadaEm : DateTime
+  +ProcessadaEm : DateTime?
+}
+
+enum StatusContratacao {
+  Pendente
+  EmAnalise
+  Aprovada
+  Reprovada
+  Falhou
+}
+
+Cliente "1" -- "0..*" Contratacao : solicita
+Servico "1" -- "0..*" Contratacao : referencia
+Contratacao --> StatusContratacao
+
+@enduml

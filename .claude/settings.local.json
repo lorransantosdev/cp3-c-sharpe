@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git mv *)",
+      "Bash(git rm *)",
+      "Bash(dotnet build *)",
+      "Bash(where dotnet *)",
+      "Read(//c/Program Files/dotnet/**)",
+      "Bash(ls \"C:\\\\\\\\Program Files\\\\\\\\dotnet\\\\\\\\sdk\\\\\\\\\")",
+      "Bash(git show *)",
+      "Read(//tmp/**)"
+    ]
+  }
+}
